@@ -1,0 +1,13 @@
+from client import RestClient
+
+client = RestClient("login", "password")
+
+# using this method you can get a list of completed tasks
+# GET /v3/merchant/google/products/tasks_ready
+response = client.get("/v3/merchant/google/products/tasks_ready")
+# you can find the full list of the response codes here https://docs.dataforseo.com/v3/appendix/errors
+if response["status_code"] == 20000:
+    print(response)
+    # do something with result
+else:
+    print("error. Code: %d Message: %s" % (response["status_code"], response["status_message"]))
